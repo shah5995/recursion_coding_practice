@@ -1,71 +1,39 @@
 #include<iostream>
 using namespace std;
 #include<cstring>
-
-int code_string(char input[],int i,char output[],int j)
+void code_string(char input[],char output[],int i,int j,char ascii[])
 {
-	if(input[i]=='\0')
-	{
-		output[j]='\0';
-		
-		//cout<<output<<", ";
-		
-		return 1;
+    if(i>=strlen(input))
+    {
+        output[j]='\0';
+        cout<<output<<" ";
+        return;
+    }
+    output[j]=ascii[input[i]-48];
+    code_string(input,output,i+1,j+1,ascii);
+    if(i>=0)
+    {
+    j=j-1;
+    cout<<j<<endl;
+    int r=(input[i-1]-48)*10+(input[i]-48);
+    if(r<25)
+    {
+    	output[j]=ascii[r];
+    	code_string(input,output,i+2,j+1,ascii);
+    	
 	}
-	output[j]=input[i]+'a'-49;
-	int c=0;
-c=c+	code_string(input,i+1,output,j+1);
-	if(i+1<strlen(input))
-	{
-		int p=input[i]-48;
-		p=p*10+input[i+1]-48;
-		if(p<26)
-		{
-			output[j]=p+'a'-1;
-			
-			c=c+code_string(input,i+2,output,j+1);
-		}
-	}
-	return c;
 }
-int p=0;
-void code_string2(char input[],int i,char output[],int j,int c)
-{
-	if(input[i]=='\0')
-	{
-		output[j]='\0';
-		
-		cout<<output;
-	p++;
-		
-		if(p!=c)
-		{
-		cout<<", ";	
-		}
-		
-		return;
-	}
-	output[j]=input[i]+'a'-49;
-	code_string2(input,i+1,output,j+1,c);
-	if(i+1<strlen(input))
-	{
-		int p=input[i]-48;
-		p=p*10+input[i+1]-48;
-		if(p<26)
-		{
-			output[j]=p+'a'-1;
-			
-			code_string2(input,i+2,output,j+1,c);
-		}
-	}
-	
+    
+    
 }
-int main()
-{
-	char input[100],output[100];
-	cin>>input;
-	cout<<"[";
-int	c=code_string(input,0,output,0);
-	code_string2(input,0,output,0,c);
-	cout<<"]";
+int main() {
+    char input[100],output[100];
+    cin>>input;
+    char ascii[30];
+    for(int i=1;i<=26;i++)
+    {
+        ascii[i]='a'+i-1;
+    }
+    code_string(input,output,0,0,ascii);
+	return 0;
 }

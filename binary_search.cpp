@@ -1,45 +1,41 @@
 #include<iostream>
 using namespace std;
-bool bs(int a[],int t,int start,int end)
+bool binary(int a[],int k,int start,int end)
 {
+	cout<<"shah";
+	bool ans;
 	if(start>end)
 	{
-		cout<<"not found";
-		return false ;
+		return false;
 	}
-	int r=(start+end)/2;
-	if(t==a[r])
+	int middle=(start+end)/2;
+	if(a[middle]==k)
 	{
-		cout<<"found at"<<r;
 		return true;
 	}
-	 
-	else if(t>a[r])
+	else
+	if(k<a[middle])
 	{
-		start=r+1;
-		
-		
+		ans=binary(a,k,0,middle);
 	}
-	else if(t<a[r])
+	else
 	{
-		end=r-1;
+		 ans=binary(a,k,middle+1,end);
 	}
-bool b=	bs(a,t,start,end);
-return b;
-	
+	return ans;
 }
 int main()
 {
-	int n;
-	cin>>n;
-	int a[20];
-	for(int i=0;i<n;i++)
+	int a[10]={1,2,3,4,5};
+	int k;
+	cin>>k;
+	if(binary(a,k,0,4))
 	{
-		cin>>a[i];
+		cout<<"found";
 	}
-	int t;
-	cin>>t;
-	int start=0;int end=n-1;
-bool b=	bs(a,t,start,end);
-	cout<<b;
+	else 
+	{
+		cout<<"NOT FOUND";
+	}
+
 }

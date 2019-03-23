@@ -1,42 +1,42 @@
 #include<iostream>
 using namespace std;
 bool is_safe(int arr[100][100],int n,int x,int y){
-    for(int i=x+1,j=y;i<n;i++){
+    for(int i=x+1,j=y;i<=n;i++){
         if(arr[i][j]==1){
             return false;
         }
     }
-    for(int i=x-1,j=y;i>=0;i--){
+    for(int i=x-1,j=y;i>0;i--){
         if(arr[i][j]==1){
             return false;
         }
     }
-    for(int i=x,j=y+1;j<n;j++){
+    for(int i=x,j=y+1;j<=n;j++){
         if(arr[i][j]==1){
             return false;
         }
     }
-    for(int i=x,j=y-1;j>=0;j--){
+    for(int i=x,j=y-1;j>0;j--){
         if(arr[i][j]==1){
             return false;
         }
     }
-    for(int i=x+1,j=y+1;i<n && j<n;i++,j++){
+    for(int i=x+1,j=y+1;i<=n && j<=n;i++,j++){
         if(arr[i][j]==1){
             return false;
         }
     }
-    for(int i=x-1,j=y+1;i>=0 && j<n;i--,j++){
+    for(int i=x-1,j=y+1;i>0 && j<=n;i--,j++){
         if(arr[i][j]==1){
             return false;
         }
     }
-    for(int i=x+1,j=y-1;x<n && j>=0;i++,j--){
+    for(int i=x+1,j=y-1;x<=n && j>0;i++,j--){
         if(arr[i][j]==1){
             return false;
         }
     }
-    for(int i=x-1,j=y-1;i>=0 &&j>=0;i--,j--){
+    for(int i=x-1,j=y-1;i>0 &&j>0;i--,j--){
         if(arr[i][j]==1){
             return false;
         }
@@ -44,28 +44,27 @@ bool is_safe(int arr[100][100],int n,int x,int y){
 
     return true;
 }
-
 int nqueens(int arr[100][100],int n,int x,int y){
-    if(x==n){
-        cout<<"****************************"<<endl;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++){
-            	if(arr[i][j]==1)
-            	{
-            		  cout<<"{"<<i+1<<"-"<<j+1<<"} ";
+    if(y==n){
+       // cout<<"****************************"<<endl;
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=n;j++){
+                if(arr[i][j]!=0)
+                {
+                	cout<<"{"<<i<<"-"<<j<<"} ";
 				}
-                
             }
-            cout<<endl;
+            
         }
-        cout<<"****************************"<<endl;
+        cout<<"  ";
+        //cout<<"****************************"<<endl;*/
         return 1;
     }
     int number = 0;
-    for(int i=0;i<n;i++){
+    for(int i=1;i<=n;i++){
         if(is_safe(arr,n,x,i)){
             arr[x][i] = 1;
-            number+=nqueens(arr,n,x+1,0);
+            number+=nqueens(arr,n,x+1,1);
             /*
             bool done = nqueens(arr,n,0,y+1);
             if(done){
@@ -81,5 +80,5 @@ int main(){
 int arr[100][100] = {0};
 int n;
 cin>>n;
-cout<<nqueens(arr,n,0,0)<<endl;;
+cout<<nqueens(arr,n,1,1);
 }

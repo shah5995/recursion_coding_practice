@@ -1,43 +1,45 @@
 #include<iostream>
 using namespace std;
-void bubble_sort(int a[],int n,int i )
+void bubble_sort(int a[],int n)
 {
-	if(i==n-1)
+	if(n==1)
 	{
 		return;
 	}
-	if(a[i]>a[i+1])
+	for(int j=0;j<=n-2;j++)
 	{
-		int temp=a[i];
-		a[i]=a[i+1];
-		a[i+1]=temp;
-	//		bubble_sort(a,n,i+1);
-		//	return;
+	if(a[j]>a[j+1])
+	{
+		swap(a[j],a[j+1]);
+	}
 		
 	}
 	
-			bubble_sort(a,n,i+1);
-		
-
-
-	bubble_sort(a,n-1,i);
-	
-
+	bubble_sort(a,n-1);
+}
+void bubble_sort2(int a[],int j,int n)
+{
+	cout<<"shah";
+	if(n==1)
+	{
+		return;
+	}
+	if(j==n-1)
+	{
+	   return	bubble_sort2(a,0,n-1);
+	}
+	if(a[j]>a[j+1])
+	{
+		swap(a[j],a[j+1]);
+	}
+	bubble_sort2(a,j+1,n);
 }
 int main()
 {
-	int n;
-	cin>>n;
-	int a[20];
-	for(int i=0;i<n;i++)
-	{
-		cin>>a[i];
-	}
-	int i=0;
-	bubble_sort(a,n,i);
-	for(int i=0;i<n;i++)
-	{
-		cout<<a[i]<<" ";
-	}
-	
+	int a[10]={5,4,1,2,3};
+		bubble_sort2(a,0,5);
+		for(int i=0;i<5;i++)
+		{
+			cout<<a[i];
+		}
 }

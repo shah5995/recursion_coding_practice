@@ -1,21 +1,21 @@
 #include<iostream>
 using namespace std;
-void toh(int n,char source,char helper,char destination)
+int toh(int source,int helper,int destination,int n)
 {
 	if(n==1)
 	{
-		cout<<"move\t"<<source<<"\tto\t"<<destination<<endl<<endl;
-		return;
+		cout<<"Move "<<n<<"th disc from T"<<source<<" to T"<<destination<<endl;
+		return 1;
 	}
-	toh(n-1,source,destination,helper);
-	cout<<"move\t"<<source<<"\tto\t"<<destination<<endl<<endl;
-	toh(n-1,helper,source,destination);
-	
+	int c=toh(source,destination,helper,n-1);
+			cout<<"Move "<<n<<"th disc from T"<<source<<" to T"<<destination<<endl;
+		c++;
+		c=c+toh(helper,source,destination,n-1);
+		return c;
 }
 int main()
 {
 	int n;
 	cin>>n;
-	char a,b,c;
-	toh(n,'A','B','C');
+	cout<<toh(1,2,3,n);
 }
